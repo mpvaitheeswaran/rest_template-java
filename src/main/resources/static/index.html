@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Send Data</title>
+   
+  </head>
+  <body>
+    <form id="myForm">
+		<label for="clientid">Client ID:</label>
+		<input id="clientid" name="clientid" >
+		<br>
+		<label for="token">Token :</label>
+		<input id="token" name="token" >
+		<br>
+		<label for="firstname">First Name:</label>
+		<input id="firstname" name="firstname" >
+		<br>
+		<label for="lastname">Last Name:</label>
+		<input id="lastname" name="lastname" >
+		<br>
+		<label for="mobile">Mobile No:</label>
+		<input id="mobile" name="mobile" >
+		
+		<input id="postSubmit" type="submit" value="Send">
+	</form>
+	<script>
+		const thisForm = document.getElementById('myForm');
+		const url = 'http://localhost:8080/api/data2'
+		thisForm.addEventListener('submit', async function (e) {
+			e.preventDefault();
+			const clientid = document.getElementById('clientid').value
+			const token = document.getElementById('token').value
+			const firstname = document.getElementById('firstname').value
+			const lastname = document.getElementById('lastname').value
+			const mobile = document.getElementById('mobile').value
+			const key = "vsdfsdk#k9fddfkjkj"
+			const id = "3"
+			const response = await fetch(url, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json','Accept': 'application/json'},
+				body: JSON.stringify({"token":token,"clientid":clientid,"firstname": firstname, "lastname": lastname, "mobile": mobile})
+			});
+
+			//JSON.stringify(Object.fromEntries(formData))
+			console.log(response)
+		});
+	</script>
+  </body>
+</html>
